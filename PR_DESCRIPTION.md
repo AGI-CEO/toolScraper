@@ -9,6 +9,7 @@ This pull request adds the Chrome extension files for the AI Tools Scraper. The 
 - `INSTALL_INSTRUCTIONS.md`: Provides detailed instructions for installing and using the Chrome extension.
 - `ai_tools_scraper_extension_new.zip`: The packaged Chrome extension.
 
+
 ## Link to Devin Run
 For more details on the development process and context, please refer to the following link:
 [Devin Run](https://preview.devin.ai/devin/4add1cea33af4479b9c27706ad677049)
