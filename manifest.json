@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "AI Tools Scraper",
+  "version": "1.0",
+  "description": "Scrape AI tools from theresanaiforthat.com",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://theresanaiforthat.com/just-launched/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
