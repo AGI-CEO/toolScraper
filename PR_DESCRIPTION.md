@@ -7,6 +7,8 @@ This pull request adds the Chrome extension files for the AI Tools Scraper. The 
 - `background.js`: Contains the background script for handling data fetching and communication.
 - `manifest.json`: Defines the extension's metadata and permissions.
 - `INSTALL_INSTRUCTIONS.md`: Provides detailed instructions for installing and using the Chrome extension.
+- `ai_tools_scraper_extension_new.zip`: The packaged Chrome extension.
+
 
 ## Link to Devin Run
 For more details on the development process and context, please refer to the following link:
