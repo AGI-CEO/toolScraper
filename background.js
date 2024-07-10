@@ -11,12 +11,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     // Function to fetch description from tool's page
     const fetchDescription = async (url) => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, { mode: 'no-cors' });
         const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'text/html');
-        const descriptionElement = doc.querySelector('meta[name="description"]');
-        return descriptionElement ? descriptionElement.getAttribute('content') : '';
+        return text; // Send the raw HTML content back to the content script
       } catch (error) {
         console.error('Error fetching description:', error);
         return '';
@@ -26,7 +23,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     // Function to fetch descriptions for all tools
     const fetchAllDescriptions = async () => {
       for (const tool of toolsData) {
-        tool.description = await fetchDescription(tool.link);
+        tool.descriptionHTML = await fetchDescription(tool.link);
       }
       sendResponse({ toolsData });
     };
