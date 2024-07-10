@@ -16,9 +16,25 @@ async function scrapeData() {
   return tools; // Return the array of tools
 }
 
+// Function to extract description from raw HTML content
+function extractDescription(htmlContent) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlContent, 'text/html');
+  const descriptionElement = doc.querySelector('meta[name="description"]');
+  return descriptionElement ? descriptionElement.getAttribute('content') : '';
+}
+
 // Send the scraped data to the background script
 scrapeData().then((toolsData) => {
   chrome.runtime.sendMessage({ toolsData }, (response) => {
     console.log('Tools data sent to background script:', response); // Log the response from the background script
   });
+});
+
+// Listen for messages from the background script
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'parseDescription' && message.htmlContent) {
+    const description = extractDescription(message.htmlContent);
+    sendResponse({ description });
+  }
 });
